@@ -19,7 +19,8 @@ def show_home():
     print
 
     #way #1 that doesn't work:
-    # session.setdefault("history", []).append(random_fruit)
+    session.setdefault("history", []).append(random_fruit)
+    session.modified = True
 
     #way #2 that doesn't work
     # if "history" in session:
@@ -30,11 +31,11 @@ def show_home():
     #     session["history"] = [random_fruit]
 
     #way #3 (credit to Ally) which DOES work
-    session["history"] = session.get("history", [])
-    session["history"].append(random_fruit)
+    # session["history"] = session.get("history", [])
+    # session["history"].append(random_fruit)
 
     print
-    print session
+    print session.modified
     print
 
     return render_template("index.html", fruit=random_fruit,
