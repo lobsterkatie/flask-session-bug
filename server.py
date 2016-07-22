@@ -14,20 +14,29 @@ def show_home():
 
     random_fruit = choice(the_list)
 
+    print
+    print session
+    print
+
+    #way #1 that doesn't work:
     # session.setdefault("history", []).append(random_fruit)
 
+    #way #2 that doesn't work
     # if "history" in session:
-    #     print session["history"]
+    #     print "about to append", random_fruit
     #     session["history"].append(random_fruit)
-    #     print session["history"]
     # else:
-    #     print "in else"
+    #     print "creating history in session with", random_fruit
     #     session["history"] = [random_fruit]
 
+    #way #3 (credit to Ally) which DOES work
     session["history"] = session.get("history", [])
     session["history"].append(random_fruit)
 
-    # print session["history"]
+    print
+    print session
+    print
+
     return render_template("index.html", fruit=random_fruit,
                            history=session["history"])
 
